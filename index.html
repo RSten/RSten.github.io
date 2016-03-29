@@ -3,43 +3,155 @@
     <head>
         <meta charset="utf-8">
         <title>D3 Page Template</title>
-        <script type="text/javascript" src="d3/d3.js"></script>
+        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+        <style type='text/css'>
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+
+        .axis text {
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+        </style>
+
     </head>
     <body>
-	
-		<style type = "text/css">
-            p {
-                font-size: 24px;
-                font-weight: bold;
-				font-family: Helvetica, Arial, sans-serif;
-            }
-        </style>
-	
-	
-        <script type="text/javascript">
-            // Your beautiful D3 code will go here
-			var dataset = [5,10,15,20,25]; 
-			
-			d3.select("body").selectAll("p")
-							 .data(dataset)
-							 .enter()
-							 .append("p")
-							 .text(function(d){return "I can count to "+d})
-							 .style("color",function(d){
-								if (d > 15) {return "red";}
-								else {return "black";}
-								
-								})
-			
-        </script>
-		
-		<svg width="500" height="500">
-			<rect x="0" y="40" width="80" height="80" fill="purple" stroke="gray" stroke-width = "2" opacity ="1"/>
-			<rect x="50" y="30" width="80" height="80" fill="blue" stroke="gray" stroke-width = "2" opacity ="0.8"/>
-			<rect x="100" y="20" width="80" height="80" fill="green" stroke="gray" stroke-width = "2" opacity ="0.6"/>
-			<rect x="150" y="10" width="80" height="80" fill="yellow" stroke="gray" stroke-width = "2" opacity = "0.4"/>
-			<rect x="200" y="0" width="80" height="80" fill="red" stroke="gray" stroke-width = "2" opacity = "0.2"/>
-		</svg>
-		
+      <button id='2015'>Year 2015</button>
+      <button id='2003'>Year 2003</button>
+
+      <script type="text/javascript">
+
+      // Width and Height
+      var margin = {top: 20, right: 20, bottom: 30, left: 40},
+          width = 600 - margin.left - margin.right,
+          height = 300 - margin.top - margin.bottom,
+          maxR = 15;
+
+
+      // Setup x
+      var xValue = function(d){return d.Prostitution},
+          xScale = d3.scale.linear().range([0,width]),
+          xMap = function(d){return xScale(xValue(d))},
+          xAxis = d3.svg.axis().scale(xScale).orient('bottom').ticks(6);
+
+      // setup y
+      var yValue = function(d){return d.Theft},
+          yScale = d3.scale.linear().range([height,0]),
+          yMap = function(d){return yScale(yValue(d))},
+          yAxis = d3.svg.axis().scale(yScale).orient('left').ticks(5);
+
+
+      // setup r
+      var rValue = function(d){return d.Total},
+          rScale = d3.scale.linear().range([3,maxR]),
+          rMap = function(d){return rScale(rValue(d))};
+
+
+
+      // Create SVG chart-area
+      var svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", width + margin.left + margin.right)
+                  .attr("height", height + margin.top + margin.bottom)
+                  .append("g")
+                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+      // Update function
+      function updateChart(data){
+        svg.selectAll('circle')
+           .data(data)
+           .transition()
+           .duration(1000)
+           .attr("r", rMap)
+           .attr("cx", xMap)
+           .attr("cy", yMap)
+           .attr('fill','Blue');
+      };
+
+      // Load datasets
+      d3.csv('SFPDmodified2003.csv',function(error,data){
+        if (error) {
+          console.log(error)
+        }
+        data.forEach(function(d){
+          d.Prostitution = +d.Prostitution
+          d.Theft = +d.Theft
+          d.Total = +d.Total
+        })
+
+      xScale.domain([0, d3.max(data, xValue)+1]);
+      yScale.domain([0, d3.max(data, yValue)+1]);
+      rScale.domain([d3.min(data,rValue),d3.max(data,rValue)])
+
+      // x-axis
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("x", width)
+          .attr("y", -6)
+          .style("text-anchor", "end")
+          .text("Prostitution");
+
+      // y-axis
+      svg.append("g")
+         .attr("class", "y axis")
+         .call(yAxis)
+       .append("text")
+         .attr("class", "label")
+         .attr("transform", "rotate(-90)")
+         .attr("y", 6)
+         .attr("dy", ".71em")
+         .style("text-anchor", "end")
+         .text("Vehicle Theft");
+
+      // draw stuff
+      svg.append("g")
+         .attr('id','circles')
+         .selectAll('circles')
+         .data(data)
+         .enter().append("circle")
+         .attr("r", rMap)
+         .attr("cx", xMap)
+         .attr("cy", yMap)
+         .attr('fill','Blue');
+
+         })
+         d3.selectAll('Button')
+           .on('click',function(d){
+
+             var paragraphID = d3.select(this).attr("id");
+
+             if (paragraphID=='2015'){
+               var datafile = 'SFPDmodified2015.csv'
+             } else {
+               var datafile = 'SFPDmodified2003.csv'
+             }
+
+
+             d3.csv(datafile,function(error,data){
+               if (error) {
+                 console.log(error)
+               }
+               data.forEach(function(d){
+                 d.Prostitution = +d.Prostitution
+                 d.Theft = +d.Theft
+                 d.Total = +d.Total
+               })
+
+               updateChart(data)
+
+
+           });
+         });
+      </script>
+
     </body>
 </html>

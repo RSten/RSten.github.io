@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Page Template</title>
+        <script type="text/javascript" src="d3/d3.js"></script>
+    </head>
+    <body>
+	
+		<style type = "text/css">
+            p {
+                font-size: 24px;
+                font-weight: bold;
+				font-family: Helvetica, Arial, sans-serif;
+            }
+        </style>
+	
+	
+        <script type="text/javascript">
+            // Your beautiful D3 code will go here
+			var dataset = [5,10,15,20,25]; 
+			
+			d3.select("body").selectAll("p")
+							 .data(dataset)
+							 .enter()
+							 .append("p")
+							 .text(function(d){return "I can count to "+d})
+							 .style("color",function(d){
+								if (d > 15) {return "red";}
+								else {return "black";}
+								
+								})
+			
+        </script>
+		
+		<svg width="500" height="500">
+			<rect x="0" y="40" width="80" height="80" fill="purple" stroke="gray" stroke-width = "2" opacity ="1"/>
+			<rect x="50" y="30" width="80" height="80" fill="blue" stroke="gray" stroke-width = "2" opacity ="0.8"/>
+			<rect x="100" y="20" width="80" height="80" fill="green" stroke="gray" stroke-width = "2" opacity ="0.6"/>
+			<rect x="150" y="10" width="80" height="80" fill="yellow" stroke="gray" stroke-width = "2" opacity = "0.4"/>
+			<rect x="200" y="0" width="80" height="80" fill="red" stroke="gray" stroke-width = "2" opacity = "0.2"/>
+		</svg>
+		
+    </body>
+</html>
