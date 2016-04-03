@@ -105,8 +105,8 @@ d3.csv('csv/SFPDmodified.csv',function(error,data){
   .on("mouseover", function(d) {
 
     //Get this bar's x/y values, then augment for the tooltip
-    var xPosition = parseFloat(d3.select(this).attr("x")) + xScale3.rangeBand() / 2+290;
-    var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height3 / 2+1020;
+    var xPosition = event.pageX - xScale3.rangeBand()
+    var yPosition = event.pageY
 
     //Update the tooltip position and value
     d3.select("#tooltip")

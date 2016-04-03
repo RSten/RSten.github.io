@@ -20,7 +20,7 @@ yAxis = d3.svg.axis().scale(yScale).orient('left').ticks(5);
 
 // setup r
 var rValue = function(d){return d.Total2003},
-    rMap = function(d){return rValue(d)/1100} // 1100 is prop
+    rMap = function(d){return rValue(d)/1200} // 1200 is prop
 
 
 // Create SVG chart-area
@@ -60,11 +60,15 @@ d3.csv('csv/SFPDmodified.csv',function(error,data){
     d.Prostitution2015 = +d.Prostitution2015
     d.Theft2015 = +d.Theft2015
     d.Total2015 = +d.Total2015
-
   })
 
-  xScale.domain([0, d3.max(data, xValue)+1]);
-  yScale.domain([0, d3.max(data, yValue)+1]);
+  var tempX1 = d3.max(data,function(d){return d.Prostitution2003}),
+      tempX2 = d3.max(data,function(d){return d.Prostitution2015}),
+      tempY1 = d3.max(data,function(d){return d.Theft2003}),
+      tempY2 = d3.max(data,function(d){return d.Theft2015});
+
+  xScale.domain([0, d3.max([tempX1,tempX2])+1]);
+  yScale.domain([0, d3.max([tempY1,tempY2])+1]);
 
   // x-axis
   chart2.append("g")
@@ -125,5 +129,4 @@ d3.selectAll('Button')
       updateChart2(data)
 
   });
-
 });
