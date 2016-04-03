@@ -1,157 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>D3 Page Template</title>
-        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-        <style type='text/css'>
-        .axis path,
-        .axis line {
-            fill: none;
-            stroke: black;
-            shape-rendering: crispEdges;
-        }
+<head>
+  <meta charset="utf-8">
+  <title>Assingment2</title>
+  <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
 
-        .axis text {
-            font-family: sans-serif;
-            font-size: 11px;
-        }
-        </style>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+  <div id="chart1">
+    <h2>Assignment 2A: Simple SVG stuff</h2>
+    <div>
+      <script src="js/assignment2a.js"></script>
+    </div>
 
-    </head>
-    <body>
-      <button id='2015'>Year 2015</button>
-      <button id='2003'>Year 2003</button>
+    <div>
+      <!--2 is added so that the gray stroke will be displayed-->
+      <svg width="284" height="200">
+        <rect x="2" y="62" width="80" height="80" fill="purple" stroke="gray" stroke-width="2" opacity="1"></rect>
+        <rect x="52" y="47" width="80" height="80" fill="blue" stroke="gray" stroke-width="2" opacity="0.8"></rect>
+        <rect x="102" y="32" width="80" height="80" fill="green" stroke="gray" stroke-width="2" opacity="0.6"></rect>
+        <rect x="152" y="17" width="80" height="80" fill="yellow" stroke="gray" stroke-width="2" opacity="0.4"></rect>
+        <rect x="202" y="2" width="80" height="80" fill="red" stroke="gray" stroke-width="2" opacity="0.2"></rect>
+      </svg>
+    </div>
+  </div>
 
-      <script type="text/javascript">
-
-      // Width and Height
-      var margin = {top: 20, right: 20, bottom: 30, left: 40},
-          width = 600 - margin.left - margin.right,
-          height = 300 - margin.top - margin.bottom,
-          maxR = 15;
-
-
-      // Setup x
-      var xValue = function(d){return d.Prostitution},
-          xScale = d3.scale.linear().range([0,width]),
-          xMap = function(d){return xScale(xValue(d))},
-          xAxis = d3.svg.axis().scale(xScale).orient('bottom').ticks(6);
-
-      // setup y
-      var yValue = function(d){return d.Theft},
-          yScale = d3.scale.linear().range([height,0]),
-          yMap = function(d){return yScale(yValue(d))},
-          yAxis = d3.svg.axis().scale(yScale).orient('left').ticks(5);
+  <br>
+  <h2>Assignment 2B: One scatter plot and two datasets</h2>
+  <div id="chart2">
+    <button id='2003'>Year 2003</button>
+    <button id='2015'>Year 2015</button>
+    <script src="js/assignment2b.js"></script>
+  </div>
+  <br>
 
 
-      // setup r
-      var rValue = function(d){return d.Total},
-          rScale = d3.scale.linear().range([3,maxR]),
-          rMap = function(d){return rScale(rValue(d))};
+  <h2>Assignment 2C: One barchart and (at least) two datasets</h2>
+  <div id="chart3">
+    <button id='Prostitution'> Prostitution </button>
+    <button id='Theft'> Vehicle Theft </button>
+    <div id="tooltip" class="hidden">
+      <p><strong>Crime Count:</strong></p>
+      <p><span id="value">100</span></p>
+    </div>
+    <script src="js/assignment2c.js"></script>
+  </div>
+  <br>
 
+  <h2>Assignment 2D: Visualizing geodata</h2>
+  <div id="chart4">
+    <div>
+      <button id='K2'>K = 2</button>
+      <button id='K3'>K = 3</button>
+      <button id='K4'>K = 4</button>
+      <button id='K5'>K = 5</button>
+      <button id='K6'>K = 6</button>
+    </div>
 
+    <script src="js/assignment2d.js"></script>
+  </div>
 
-      // Create SVG chart-area
-      var svg = d3.select("body")
-                  .append("svg")
-                  .attr("width", width + margin.left + margin.right)
-                  .attr("height", height + margin.top + margin.bottom)
-                  .append("g")
-                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+<!--<script src="js/buttons.js"></script>-->
 
-
-      // Update function
-      function updateChart(data){
-        svg.selectAll('circle')
-           .data(data)
-           .transition()
-           .duration(1000)
-           .attr("r", rMap)
-           .attr("cx", xMap)
-           .attr("cy", yMap)
-           .attr('fill','Blue');
-      };
-
-      // Load datasets
-      d3.csv('SFPDmodified2003.csv',function(error,data){
-        if (error) {
-          console.log(error)
-        }
-        data.forEach(function(d){
-          d.Prostitution = +d.Prostitution
-          d.Theft = +d.Theft
-          d.Total = +d.Total
-        })
-
-      xScale.domain([0, d3.max(data, xValue)+1]);
-      yScale.domain([0, d3.max(data, yValue)+1]);
-      rScale.domain([d3.min(data,rValue),d3.max(data,rValue)])
-
-      // x-axis
-      svg.append("g")
-          .attr("class", "x axis")
-          .attr("transform", "translate(0," + height + ")")
-          .call(xAxis)
-        .append("text")
-          .attr("class", "label")
-          .attr("x", width)
-          .attr("y", -6)
-          .style("text-anchor", "end")
-          .text("Prostitution");
-
-      // y-axis
-      svg.append("g")
-         .attr("class", "y axis")
-         .call(yAxis)
-       .append("text")
-         .attr("class", "label")
-         .attr("transform", "rotate(-90)")
-         .attr("y", 6)
-         .attr("dy", ".71em")
-         .style("text-anchor", "end")
-         .text("Vehicle Theft");
-
-      // draw stuff
-      svg.append("g")
-         .attr('id','circles')
-         .selectAll('circles')
-         .data(data)
-         .enter().append("circle")
-         .attr("r", rMap)
-         .attr("cx", xMap)
-         .attr("cy", yMap)
-         .attr('fill','Blue');
-
-         })
-         d3.selectAll('Button')
-           .on('click',function(d){
-
-             var paragraphID = d3.select(this).attr("id");
-
-             if (paragraphID=='2015'){
-               var datafile = 'SFPDmodified2015.csv'
-             } else {
-               var datafile = 'SFPDmodified2003.csv'
-             }
-
-
-             d3.csv(datafile,function(error,data){
-               if (error) {
-                 console.log(error)
-               }
-               data.forEach(function(d){
-                 d.Prostitution = +d.Prostitution
-                 d.Theft = +d.Theft
-                 d.Total = +d.Total
-               })
-
-               updateChart(data)
-
-
-           });
-         });
-      </script>
-
-    </body>
+</body>
 </html>
