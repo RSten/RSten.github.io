@@ -6,23 +6,21 @@ maxR = 15;
 
 
 // Setup x
-var xValue = function(d){return d.Prostitution},
+var xValue = function(d){return d.Prostitution2003},
 xScale = d3.scale.linear().range([0,width]),
 xMap = function(d){return xScale(xValue(d))},
 xAxis = d3.svg.axis().scale(xScale).orient('bottom').ticks(6);
 
 // setup y
-var yValue = function(d){return d.Theft},
+var yValue = function(d){return d.Theft2003},
 yScale = d3.scale.linear().range([height,0]),
 yMap = function(d){return yScale(yValue(d))},
 yAxis = d3.svg.axis().scale(yScale).orient('left').ticks(5);
 
 
 // setup r
-//var rValue = function(d){return d.Total},
-//rScale = d3.scale.linear().range([3,maxR]),
-//rMap = function(d){return rScale(rValue(d))};
-var rProp = 1100; // proportionallity constant
+var rValue = function(d){return d.Total2003},
+    rMap = function(d){return rValue(d)/1100} // 1100 is prop
 
 
 // Create SVG chart-area
@@ -40,9 +38,7 @@ function updateChart2(data){
   .data(data)
   .transition()
   .duration(1000)
-  .attr("r", function(d){
-    return d.Total/rProp
-  })
+  .attr("r", rMap)
   .attr("cx", xMap)
   .attr("cy", yMap)
   .attr('fill','Blue')
@@ -53,19 +49,22 @@ function updateChart2(data){
 };
 
 // Load datasets
-d3.csv('csv/SFPDmodified2003.csv',function(error,data){
+d3.csv('csv/SFPDmodified.csv',function(error,data){
   if (error) {
     console.log(error)
   }
   data.forEach(function(d){
-    d.Prostitution = +d.Prostitution
-    d.Theft = +d.Theft
-    d.Total = +d.Total
+    d.Prostitution2003 = +d.Prostitution2003
+    d.Theft2003 = +d.Theft2003
+    d.Total2003 = +d.Total2003
+    d.Prostitution2015 = +d.Prostitution2015
+    d.Theft2015 = +d.Theft2015
+    d.Total2015 = +d.Total2015
+
   })
 
   xScale.domain([0, d3.max(data, xValue)+1]);
   yScale.domain([0, d3.max(data, yValue)+1]);
-  //rScale.domain([d3.min(data,rValue),d3.max(data,rValue)])
 
   // x-axis
   chart2.append("g")
@@ -97,9 +96,7 @@ d3.csv('csv/SFPDmodified2003.csv',function(error,data){
   .selectAll('circles')
   .data(data)
   .enter().append("circle")
-  .attr("r", function(d){
-    return d.Total/rProp
-  })
+  .attr("r", rMap)
   .attr("cx", xMap)
   .attr("cy", yMap)
   .attr('fill','Blue')
@@ -108,32 +105,24 @@ d3.csv('csv/SFPDmodified2003.csv',function(error,data){
     return d.District
   });
 
-})
 
+d3.selectAll('Button')
+  .on('click',function(d){
 
-d3.select("#chart2").selectAll('Button')
-.on('click',function(d){
+    var paragraphID = d3.select(this).attr("id");
 
-  var paragraphID = d3.select(this).attr("id");
+    if (paragraphID=='2015'){
+      xValue = function(d){return d.Prostitution2015}
+      yValue = function(d){return d.Theft2015}
+      rValue = function(d){return d.Total2015}
 
-  if (paragraphID=='2015'){
-    var datafile = 'csv/SFPDmodified2015.csv'
-  } else if (paragraphID=='2003') {
-    var datafile = 'csv/SFPDmodified2003.csv'
-  }
-
-  d3.csv(datafile,function(error,data){
-    if (error) {
-      console.log(error)
+    } else if (paragraphID=='2003') {
+      xValue = function(d){return d.Prostitution2003}
+      yValue = function(d){return d.Theft2003}
+      rValue = function(d){return d.Total2003}
     }
-    data.forEach(function(d){
-      d.Prostitution = +d.Prostitution
-      d.Theft = +d.Theft
-      d.Total = +d.Total
-    })
 
-    updateChart2(data)
-
+      updateChart2(data)
 
   });
 
