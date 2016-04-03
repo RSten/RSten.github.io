@@ -19,10 +19,10 @@ yAxis = d3.svg.axis().scale(yScale).orient('left').ticks(5);
 
 
 // setup r
-var rValue = function(d){return d.Total},
-rScale = d3.scale.linear().range([3,maxR]),
-rMap = function(d){return rScale(rValue(d))};
-
+//var rValue = function(d){return d.Total},
+//rScale = d3.scale.linear().range([3,maxR]),
+//rMap = function(d){return rScale(rValue(d))};
+var rProp = 1100; // proportionallity constant
 
 
 // Create SVG chart-area
@@ -40,10 +40,16 @@ function updateChart2(data){
   .data(data)
   .transition()
   .duration(1000)
-  .attr("r", rMap)
+  .attr("r", function(d){
+    return d.Total/rProp
+  })
   .attr("cx", xMap)
   .attr("cy", yMap)
-  .attr('fill','Blue');
+  .attr('fill','Blue')
+  .append("title")
+  .text(function(d){
+    return d.District
+  });
 };
 
 // Load datasets
@@ -91,10 +97,16 @@ d3.csv('csv/SFPDmodified2003.csv',function(error,data){
   .selectAll('circles')
   .data(data)
   .enter().append("circle")
-  .attr("r", rMap)
+  .attr("r", function(d){
+    return d.Total/rProp
+  })
   .attr("cx", xMap)
   .attr("cy", yMap)
-  .attr('fill','Blue');
+  .attr('fill','Blue')
+  .append("title")
+  .text(function(d){
+    return d.District
+  });
 
 })
 
