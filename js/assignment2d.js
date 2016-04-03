@@ -2,9 +2,9 @@
 d3.json('json/sfpddistricts.json',function(data){
 
 
-	var width = 400, height = 400;
+	var width = 600, height = 400;
 
-	var chart4 = d3.select("body").append("svg").attr("width", width).attr("height", height);
+	var chart4 = d3.select("#chart4").append("svg").attr("width", width).attr("height", height);
 
 	var projection = d3.geo.mercator().scale(1).translate([0, 0]).precision(0);
 	var path = d3.geo.path().projection(projection);

@@ -26,7 +26,7 @@ rMap = function(d){return rScale(rValue(d))};
 
 
 // Create SVG chart-area
-var chart2 = d3.select("body")
+var chart2 = d3.select("#chart2")
 .append("svg")
 .attr("width", width + margin.left + margin.right)
 .attr("height", height + margin.top + margin.bottom)

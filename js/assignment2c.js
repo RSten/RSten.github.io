@@ -46,7 +46,7 @@ function updateAxis3(xAxis3,yAxis3){
 
 
 // Create SVG chart-area
-var chart3 = d3.select("body")
+var chart3 = d3.select("#chart3")
 .append("svg")
 .attr("width", width3 + margin3.left + margin3.right)
 .attr("height", height3 + margin3.top + margin3.bottom)
