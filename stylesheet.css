@@ -10,10 +10,11 @@
     font-size: 11px;
 }
 
-/*body {
-    background-image: url("images/background.jpg");
-}*/
-
+/*
+body {
+    fill: green;
+}
+*/
 circle:hover{
   fill: orange;
 }
@@ -79,13 +80,6 @@ html {
     margin: auto;
 }
 
-body {
-    display: table-cell;
-    vertical-align: middle;
-}
-
 div{
     text-align:center;
 }
-
-#svgMain {margin-left:auto; margin-right:auto; display:block;}
