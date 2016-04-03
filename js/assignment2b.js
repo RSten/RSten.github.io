@@ -65,7 +65,7 @@ d3.csv('csv/SFPDmodified2003.csv',function(error,data){
 
   xScale.domain([0, d3.max(data, xValue)+1]);
   yScale.domain([0, d3.max(data, yValue)+1]);
-  rScale.domain([d3.min(data,rValue),d3.max(data,rValue)])
+  //rScale.domain([d3.min(data,rValue),d3.max(data,rValue)])
 
   // x-axis
   chart2.append("g")
