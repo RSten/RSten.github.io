@@ -14,7 +14,7 @@ var diagonal = d3.svg.diagonal()
 
 var svg = d3.select("#graph").append("svg")
 .attr("width", width + margin.right + margin.left)
-.attr("height", height*0.9)
+.attr("height", height)
 .append("g")
 .attr("transform", "translate(" + margin.left + ")");
 
@@ -133,17 +133,12 @@ var Manhattan = 0;
 var Queens = 0;
 var Staten = 0;
 
-var idCount = [1,25];
-
-
 // Toggle children on click.
 function click(d) {
-  console.log(idCount);
 
   if (d.children) {
     d._children = d.children;
     d.children = null;
-    console.log(d._children);
     if (d._children[0].borough && d._children[1].borough) {
       Manhattan = Manhattan - d._children[0].count[0];
       Staten = Staten - d._children[0].count[1];
