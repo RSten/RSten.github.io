@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--Get Css-->
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<!--Set favicon-->
+<link rel="shortcut icon" type="image/png" href="pictures/favicon.png"/>
+<!--Set title text-->
+<title>2806: Final Project</title>
+<!--Bootstrap-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!-- layout javascript -->
+<script src="js/layout.js"></script>
+<!-- Jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="height=device-height">
+<script>
+	var globalValue = 0;
+	var data = [
+	"/Models/model0/index.html",
+	"/Models/model1/index.html",
+	"/Models/model2/index.html",
+	"/Models/model3/index.html",
+	"/Models/model4/index.html",
+	"/Models/model5/index.html",
+	"/Models/model6/index.html"
+	];
+	var iFrames = data.length -1;
+	console.log("tard");
+	var iFramURLReal =  data[globalValue];
+	function Missing(){document.getElementById("iFRAME").style.height = "100%";}
+	</script>
+</head>
+<body>
+	<div id="all">
+		<header>
+			<h1 class="overskrift">Overskrift </h1>
+		</header>
+		<div class="frame" id="frame">
+		<div style = "float: left; width: 5%; height: 100%; ">
+		<img onclick="goLeft()"class = "leftArrow" src = "pictures/left.png">
+		</div>
+		<iframe id = "iFRAME" style="margin: 0 auto; margin-left: 2%; width: 86%;  height: 100%" scrolling = "no" onLoad="Missing()" src=	"/models/model0/index.html",
+></iframe>
+		<div style = "float: right; width: 5%; height: 100%;">
+		<img onclick="goRight()" class = "rightArrow" src = "pictures/right.png">
+		</div>
+		</div>
+
+
+
+
+		<!--Informatin Box -->
+		<div class="alert alert-success" id="box">
+			<div id= "goaway">
+  				<button type="button" id="hide" class="btn btn-danger btn-xs">close</button>
+  			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Contact Information
+				</div>
+  				<div class="panel-body">
+  					Rasmus Sten Andersen and Nicolai Petersen <br>
+  					Email: <a href="mailto:test@test.com" target="_top">test@test.com</a>
+  				</div>
+			</div>
+		</div>
+		</div>
+</body>
+<footer>
+  <p class="left-footer">Lavet af</p>
+  <p class = "right-footer" id= "show">Contact information</p>
+</footer>
+</html>

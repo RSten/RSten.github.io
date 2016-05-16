@@ -1,0 +1,33 @@
+.box {
+  float: left;
+  width: 40%;
+  height: 100%;
+  margin-top: 2%;
+}
+
+h1 {
+  font-family: 'Dancing Script', Georgia, Times, serif;
+ font-size: 59px;
+ line-height: 60px;
+}
+
+p {
+  font-family: 'Josefin Sans', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 25px;
+  margin-top: 15px;
+}
+
+
+.container {
+  position: relative;
+  background-color: white;
+  margin-left: 1%
+}
+
+.chart {
+  float: left;
+  overflow: hidden;
+  margin-top: 7%;
+  margin-left: 5%;
+}

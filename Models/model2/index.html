@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="images/lol.jpg" type="image/jpg" sizes="16x16">
+  <title>Final Project</title>
+  <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div id="boxes" class="boxes">
+      <div class="col-md-4" style="margin-top: 1%;">
+
+          <table style="width:100%; table-layout:fixed;" class="table table-hover table-bordered">
+          <tr class="info">
+            <td><strong>Hover for info</strong></td>
+          </tr>
+          <tr>
+            <td id="r1c1" class="col-md-4">Borough (ZIP) </td>
+            <td id="r1c2" class="col-md-4"></td>
+          </tr>
+          <tr>
+            <td id="r2c1" class="col-md-4"> Fastfood restaurants <br> per 100,000 capita</td>
+            <td id="r2c2" class="col-md-4"></td>
+          </tr>
+          <tr>
+            <td id="r3c1" class="col-md-4"> Average income per year </td>
+            <td id="r3c2" class="col-md-4"></td>
+          </tr>
+          <tr>
+            <td id="r4c1" class="col-md-4"> Number of citizens </td>
+            <td id="r4c2" class="col-md-4"></td>
+          </tr>
+          <tr>
+            <td id="r5c1"> </td>
+            <td id="r5c2"> </td>
+          </tr>
+          <tr>
+            <td id="r6c1"> </td>
+            <td id="r6c2"> </td>
+          </tr>
+          <tr>
+            <td id="r7c1"> </td>
+            <td id="r7c2"> </td>
+          </tr>
+          <tr>
+            <td id="r8c1"> </td>
+            <td id="r8c2"> </td>
+          </tr>
+        </table>
+
+        <button type="button" class="btn btn-primary btn" id='overview'>Overview</button>
+
+        <button type="button" class="btn btn-primary btn" id='income'>Income</button>
+
+        <button type="button" class="btn btn-primary btn" id='health'>Health</button>
+      </div>
+      <div  id="graph" style="margin-top: 2%;">
+        <script src="js/zipCode.js"></script>
+      </div>
+  </div>
+
+</body>
+</html>
