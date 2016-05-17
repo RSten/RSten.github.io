@@ -11,27 +11,27 @@
   <div class="container">
       <h1>What Did We Find?</h1>
       <p>
-        The different data set used to contruct the features used in this project
+        The different datasets used to contruct the features used in this project
         contained a lot of missing data points. Using the ZIP-codes as samples (or observations)
-        already composed a sparse data set. The missing values only contributes to worsening this
-        problem.
+        naturally introduced a sparse dataset as some of the ZIP-codes contains no useful information i.e. Central Park (00083).
+        Removal of observations with missing values resulted in a reduction of observations from 262 to 160.
         <br> <br>
-        Using a decision tree with only 5 levels of depth it was possible to gain an average test
-        accuracy of 47%.
-
-        Using linear regression (both multiple and ridge) it was possible to explain an average of 55 %
+        Using a decision tree with only 5 levels of depth yielded an average test accuracy of 47%.
+        <br>
+        Fitting linear regression models (both multiple and ridge) it was possible to explain an average of 55 %
         of the variance (R^2 coefficient).
         <br> <br>
         Clearly the linear approach to the data was not succesful. The linear models simply does not
         capture the complexity of the data.
-        <br>
         To adress this issue, it would be interesting to implement and train a neural network to predict the diseases.
         Due to the limited time frame of the project we unfortunately haven't been able to do so.
         <br> <br>
+        Another way to improve the model would be to add additional features.
         It was disired to include the average Body Mass Index (BMI) as a feature, but other features
-        like educational level and crime rate would be interresting aswell.
+        like educational level and crime rate would be interresting to include aswell.
         <br> <br>
-        Refer to iPython notebook and other relevant links (data sets)
+
+        For additional information please see the iPython notebook in the next slide.
 
       </p>
  </div>
