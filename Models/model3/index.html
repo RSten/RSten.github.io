@@ -13,21 +13,23 @@
       <!--Some text-->
       <h1>Decicsion Tree</h1>
       <p>
-        As seen in on previous slide, large diffences exists between the boroughs of New York.
-        The question is, if the differences between the boroughs are so large that we can predict which borough the zip-code belongs to based on the features presented in the previous slide.
-        To do so, a decision tree has been trained, using all features as input and the boroughs as targets.
+        The question is; can the borough of an observation be predicted based on the economical and health related features?
+        From the exploration of the data, clearly large diffences exists between the boroughs of New York City.
+        But is the variation between the boroughs disquisable from the overall variation?
+        To explore this, a decision tree has been trained, using all features as input and the boroughs as targets.
         <br>
         In the next slide the decision tree has been visualized. By clicking on the nodes it is possible to expand or hide the branches of the tree
         in order to see how the decision tree performs the classification.
         <br>
-        Using Gini impurity measure and a max depth of 5 nodes the decision tree gave the following results:
+        The tree uses the Gini impurity measure and has a max depth of 5 nodes.
+        The performance of the classifier was evaluated using a 10-fold crossvalidation, and the following results were obtained.
         <br>
         Traning error = 74.4 %
         <br>
-        Test error = 45.2 % - Using a 10-fold crossvalidation.
+        Test error = 45.2 %
         <br>
         <br>
-        The max depth of 5 nodes was chosen to avoid to much overfitting.
+        The max depth of 5 nodes was chosen to limit the amount of overfitting.
       </p>
 
     </div>
