@@ -139,67 +139,9 @@ function click(d) {
   if (d.children) {
     d._children = d.children;
     d.children = null;
-    if (d._children[0].borough && d._children[1].borough) {
-      Manhattan = Manhattan - d._children[0].count[0];
-      Staten = Staten - d._children[0].count[1];
-      Queens = Queens - d._children[0].count[2];
-      Bronx = Bronx - d._children[0].count[3];
-      Brooklyn = Brooklyn - d._children[0].count[4];
-      Manhattan = Manhattan - d._children[1].count[0];
-      Staten = Staten - d._children[1].count[1];
-      Queens = Queens - d._children[1].count[2];
-      Bronx = Bronx - d._children[1].count[3];
-      Brooklyn = Brooklyn - d._children[1].count[4];
-      console.log(Manhattan);
-    }
-    else if(d._children[0].borough){
-      Manhattan = Manhattan - d._children[0].count[0];
-      Staten = Staten - d._children[0].count[1];
-      Queens = Queens - d._children[0].count[2];
-      Bronx = Bronx - d._children[0].count[3];
-      Brooklyn = Brooklyn - d._children[0].count[4];
-      console.log(Manhattan);
-    }
-    else if(d._children[1].borough) {
-      Manhattan = Manhattan - d._children[1].count[0];
-      Staten = Staten - d._children[1].count[1];
-      Queens = Queens - d._children[1].count[2];
-      Bronx = Bronx - d._children[1].count[3];
-      Brooklyn = Brooklyn - d._children[1].count[4];
-      console.log(Manhattan);
-    }
   } else {
     d.children = d._children;
     d._children = null;
-    if(d.children[0].borough && d.children[1].borough){
-      Manhattan = Manhattan + d.children[0].count[0];
-      Staten = Staten + d.children[0].count[1];
-      Queens = Queens + d.children[0].count[2];
-      Bronx = Bronx + d.children[0].count[3];
-      Brooklyn = Brooklyn + d.children[0].count[4];
-      Manhattan = Manhattan + d.children[1].count[0];
-      Staten = Staten + d.children[1].count[1];
-      Queens = Queens + d.children[1].count[2];
-      Bronx = Bronx + d.children[1].count[3];
-      Brooklyn = Brooklyn + d.children[1].count[4];
-      console.log(Manhattan);
-    }
-    else if(d.children[0].borough){
-      Manhattan = Manhattan + d.children[0].count[0];
-      Staten = Staten + d.children[0].count[1];
-      Queens = Queens + d.children[0].count[2];
-      Bronx = Bronx + d.children[0].count[3];
-      Brooklyn = Brooklyn + d.children[0].count[4];
-      console.log(Manhattan);
-    }
-    else if(d.children[1].borough) {
-      Manhattan = Manhattan + d.children[1].count[0];
-      Staten = Staten + d.children[1].count[1];
-      Queens = Queens + d.children[1].count[2];
-      Bronx = Bronx + d.children[1].count[3];
-      Brooklyn = Brooklyn + d.children[1].count[4];
-      console.log(Manhattan);
-    }
   }
   update(d);
 }
