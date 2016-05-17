@@ -216,10 +216,10 @@ d3.json("json/NyZip.json", function(json) {
 				$("#r5c2").text(parseFloat($(this).data('diabeteslong')).toFixed(2));
 				$("#r6c1").text('Short term diabetes per 100,000 capita');
 				$("#r6c2").text(parseFloat($(this).data('diabetesshort')).toFixed(2));
-				$("#r7c1").text(' " ');
-				$("#r7c2").text((' " '));
-				$("#r8c1").text(' " ');
-				$("#r8c2").text((' " '));
+				$("#r7c1").text(' ');
+				$("#r7c2").text((' '));
+				$("#r8c1").text(' ');
+				$("#r8c2").text((' '));
 			});
 
 		}
